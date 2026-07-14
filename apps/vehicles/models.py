@@ -22,8 +22,8 @@ class Vehicle(BaseModel):
     registration_number = models.CharField(
         max_length=20,
         unique=True,
+        help_text="Vehicle registration number",
     )
-
     make = models.CharField(max_length=50)
 
     model = models.CharField(max_length=50)
@@ -36,16 +36,19 @@ class Vehicle(BaseModel):
     manufacture_year = models.PositiveSmallIntegerField(
         null=True,
         blank=True,
+        help_text="year of manufactur(YYYY)",
     )
 
     color = models.CharField(
         max_length=30,
         blank=True,
+        help_text="Vehicle color",  
     )
 
     category = models.CharField(
         max_length=20,
         choices=VehicleCategory.choices,
+        
     )
 
     fuel_type = models.CharField(
@@ -65,6 +68,11 @@ class Vehicle(BaseModel):
         blank=True,
         help_text="Current odometer reading",
     )
+
+    def save(self, *args, **kwargs):
+        if self.registration_number:
+            self.registration_number = self.registration_number.upper()
+        super().save(*args, **kwargs)
 
     class Meta:
         ordering = ["registration_number"]
