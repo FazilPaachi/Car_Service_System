@@ -36,7 +36,7 @@ class Vehicle(BaseModel):
     manufacture_year = models.PositiveSmallIntegerField(
         null=True,
         blank=True,
-        help_text="year of manufactur(YYYY)",
+        help_text="year of manufacture(YYYY)",
     )
 
     color = models.CharField(

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Customer Desk</h2>
+
+{% include "components/search_bar.html" %}
+
+{% if search %}
+
+    {% if customers %}
+
+        {% for customer in customers %}
+
+            {% include "components/customer_card.html" %}
+
+        {% endfor %}
+
+    {% else %}
+
+        {% include "components/empty_state.html" %}
+
+    {% endif %}
+
+{% endif %}
+
+{% endblock %}

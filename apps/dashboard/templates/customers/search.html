@@ -18,20 +18,20 @@ Customer Search
                     Search Customer
                 </h3>
 
-                <form>
+                <form method="get">
 
                     <div class="input-group input-group-lg">
 
                         <input
                             type="text"
+                            name="q"
+                            value="{{ query }}"
                             class="form-control"
-                            placeholder="Phone Number or Registration Number">
+                            placeholder="Phone, Name or Registration Number">
 
-                        <button
-                            class="btn btn-primary">
-
+                        <button class="btn btn-primary">
+                        <i class="bi bi-search"></i>
                             Search
-
                         </button>
 
                     </div>
@@ -45,5 +45,44 @@ Customer Search
     </div>
 
 </div>
+
+
+
+<hr>
+
+{% if query %}
+
+    {% if customers %}
+
+        <div class="list-group">
+
+        {% for customer in customers %}
+
+            <a href="#"
+               class="list-group-item list-group-item-action">
+
+                <strong>{{ customer.full_name }}</strong>
+
+                <br>
+
+                {{ customer.phone_number }}
+
+            </a>
+
+        {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="alert alert-warning">
+
+            No customer found.
+
+        </div>
+
+    {% endif %}
+
+{% endif %}
 
 {% endblock %}
